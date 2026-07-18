@@ -1,0 +1,32 @@
+# Configuration for the Operator Performance Benchmarking pipeline.
+# Centralising these values here means no paths, ports, or magic numbers
+# are hardcoded inside the source modules.
+
+data:
+  gtfs_dir: "data/itm_west_midlands_gtfs"
+  disruptions_dir: "data/sirisx_2026-07-16_042319"
+  disruptions_file: "sirisx.xml"
+
+spark:
+  app_name: "OperatorPerformanceBenchmarking"
+  master: "local[*]"
+  repartition_count: 4
+
+database:
+  path: "data/operator_performance.db"
+  table_name: "operator_reliability"
+
+ml:
+  k_values: [2, 3, 4]
+  random_state: 42
+  n_init: 10
+  selected_k: 3
+  cluster_labels:
+    # Mapping applied after inspecting which cluster has the lowest
+    # headway_stddev (most consistent service).
+    most_reliable: "Most Reliable"
+    moderate: "Moderate"
+    least_consistent: "Least Consistent"
+
+output:
+  figures_dir: "docs/figures"
