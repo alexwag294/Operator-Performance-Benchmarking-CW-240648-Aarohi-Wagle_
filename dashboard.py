@@ -19,6 +19,20 @@ from src.db.load_db import get_connection
 
 st.set_page_config(page_title="Operator Performance Benchmarking", layout="wide")
 
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-color: #E8F4FD;
+    }
+    section[data-testid="stSidebar"] {
+        background-color: #D0E8FA;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 st.title("Operator Performance Benchmarking")
 st.caption("West Midlands bus operators, ranked by service consistency (headway variance)")
 
